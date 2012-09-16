@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>Aero Timer</title>
+  <link href="assets/style.css?v19" rel="stylesheet" />
+</head>
+<body>
+  <div id="wrap">
+    <div id="header">
+       <h1 id="site_heading" style="display:none;">Aero Timer 在线定时器</h1>
+      <div id="logo"><a href="/" title="主页"></a></div>
+      <div id="shareSection">
+        <div id="like"><a href="#" onclick="return false;" title="分享"></a></div>
+        <div id="share">
+          <a target="_blank" title="分享到人人网" href="http://share.renren.com/share/buttonshare.do?link=http://aerotimer.com"><img src="assets/ico/renren.ico" width="16" height="16" alt="Renren" /></a>
+          <a target="_blank" title="分享到QQ空间" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://aerotimer.com&title=Aero Timer 在线定时器"><img src="assets/ico/qzone.ico" width="16" height="16"  alt="Qzone"/></a>
+          <a target="_blank" title="分享到新浪微博" href="http://v.t.sina.com.cn/share/share.php?title=Aero Timer 在线定时器&url=http://aerotimer.com&source=bookmark"><img src="assets/ico/sina.ico" width="16" height="16"  alt="Sina"/></a>
+          <a target="_blank" title="分享到豆瓣" href="http://www.douban.com/recommend/?url=http://aerotimer.com&title=Aero Timer 在线定时器"><img src="assets/ico/douban.ico" width="16" height="16"  alt="Douban"/></a>
+          <a target="_blank" title="分享到Google阅读器" href="http://www.google.com/reader/link?url=http://aerotimer.com&title=Aero Timer 在线定时器"><img src="assets/ico/google.ico" width="16" height="16"  alt="Google"/>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div id="location_0" class="location"></div>
+  </div>
+  <script>
+    $j(document).ready(function(){
+       $j("a[rel^='prettyPhoto']").prettyPhoto({
+       animationSpeed:'fast',
+       padding:30,
+       showTitle:false,
+       theme:'light_rounded',
+       showDescription:false });
+    });
+    $j(document).ready(function(){
+      var sharehover=$j('#share');
+      $j('#shareSection').hover(
+        function(){sharehover.stop(true, true).animate({top:'0'},{queue:false,duration:400}).fadeIn(400)},
+        function(){sharehover.stop(true, true).animate({top:'-33'},{queue:false,duration:400}).fadeOut(400)}
+      );
+    });
+    function replaceText(elm,oldtext,newtext) {
+      jQuery(elm).html(jQuery(elm).html().replace(oldtext,newtext));
+    }
+    jQuery(document).ready(function(){
+      if(jQuery("#comment_title").html()){
+      replaceText("#comment_title","Comments","留言：");
+      }
+      if(jQuery("#comment_form_title").html()){
+      replaceText("#comment_form_title","Add comment","添加留言：");
+      }
+      if(jQuery("#comments").html()){
+      replaceText("#comments",">There are no comments for this post.<",">还没有人留言呢~<");
+      }
+      if(jQuery(".submit_wrapper input","#comment_form").val()){
+      jQuery(".submit_wrapper input").val("我要留言");
+      }
+      jQuery(".metadata","#location_0").each(function(){
+      replaceText(this," comments<","条留言<");
+      replaceText(this," comment<","条留言<");
+      });
+      jQuery(".input_wrapper","#comment_form").each(function(){
+      replaceText(this,"Name: ","你的名字：");
+      replaceText(this,"Website: ","你的网站：");
+      replaceText(this,"Comment: ","你的留言：");
+      });
+      jQuery(".paging","#location_0").each(function(){
+      replaceText(this,">Displaying posts <",">当前显示 <");
+      replaceText(this,">Displaying comments <",">显示留言第 <");
+      replaceText(this,"> of <","> 条，共 <");
+      replaceText(this,"> in total<","> 条<");
+      replaceText(this,"Newer<","上一页<");
+      replaceText(this,">Older",">下一页");
+      replaceText(this,"No comments found"," ");
+      replaceText(this,/Displaying.*all.*comments/,"");
+      replaceText(this,/Displaying.*all.*posts/,"");
+      });
+      jQuery(".recent_comment","#location_1").each(function(){
+      replaceText(this," commented on "," 留言在 ");
+      });
+    });
+    $j(document).ready(function(){
+        var mArr = ["@","imyuao","me",".com"];
+        $j("#email").attr("href","mailto:"+mArr[2]+mArr[0]+mArr[1]+mArr[3]);
+                $j("#email").html(mArr[2]+mArr[0]+mArr[1]+mArr[3]);
+    });
+  </script>
+</body>
+</html>
